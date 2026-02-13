@@ -1,17 +1,23 @@
+local tabsize=2
+
 vim.cmd("set expandtab")
-vim.cmd("set tabstop=2")
-vim.cmd("set softtabstop=2")
-vim.cmd("set shiftwidth=2")
+vim.cmd("set tabstop=" .. tabsize)
+vim.cmd("set softtabstop=" .. tabsize)
+vim.cmd("set shiftwidth=" .. tabsize)
 vim.cmd("set noswapfile")
 vim.cmd("set number")
 vim.cmd("set cindent")
-vim.cmd("set cinoptions=2")
+vim.cmd("set cinoptions="..tabsize)
 vim.cmd("set fillchars=eob:\\ ")
 vim.cmd("set nowritebackup")
 vim.cmd("tnoremap <Esc> <C-\\><C-n>")
 
 -- redo
 vim.keymap.set("n", "U", "<C-r>", {})
+
+-- tabs
+vim.keymap.set("n", "<Tab>", ":tabNext<CR>", {})
+vim.keymap.set("n", "<S-Tab>", ":tabprevious<CR>", {})
 
 -- ctrl keymaps
 vim.keymap.set("n", "<C-z>", "u", {})
@@ -43,10 +49,10 @@ augroup('setIndent', { clear = true }) -- Set indentation depending on filetype
 autocmd('Filetype', {
     group = 'setIndent',
     pattern = { 'css', 'scss', 'sass' },
-    command = 'setlocal shiftwidth=2 tabstop=2 softtabstop=2 cinoptions=2'
+    command = 'setlocal shiftwidth='..tabsize..' tabstop='..tabsize..' softtabstop='..tabsize..' cinoptions='..tabsize
 })
 autocmd('Filetype', {
     group = 'setIndent',
     pattern = { 'dart' },
-    command = 'setlocal shiftwidth=2 tabstop=2 softtabstop=2 cinoptions=2'
+    command = 'setlocal shiftwidth='..tabsize..' tabstop='..tabsize..' softtabstop='..tabsize..' cinoptions='..tabsize
 })
