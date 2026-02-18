@@ -1,0 +1,21 @@
+[plugin]
+
+#   fetchers = [
+#     { id = "simple-tag", url = "*", run = "simple-tag" },
+#     { id = "simple-tag", url = "*/", run = "simple-tag" },
+#   ]
+# # or
+#   prepend_fetchers = [
+#     { id = "simple-tag", url = "*", run = "simple-tag" },
+#     { id = "simple-tag", url = "*/", run = "simple-tag" },
+#   ]
+# # or
+#   append_fetchers = [
+#     { id = "simple-tag", url = "*", run = "simple-tag" },
+#     { id = "simple-tag", url = "*/", run = "simple-tag" },
+#   ]
+
+[opener]
+edit = [
+  { run = "nvim %s", block = true, for = "unix" },
+]
