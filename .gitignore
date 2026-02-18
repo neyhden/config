@@ -20,3 +20,6 @@
 
 !kitty/
 !kitty/**/*
+
+!yazi/
+!yazi/**/*
