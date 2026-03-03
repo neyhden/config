@@ -211,6 +211,11 @@
       :spacing 6
       :halign "start"
       (cog)
+      (systray
+        :orientation "h"
+        :space-evenly true
+        :icon-size 16
+      )
     )
     (box
       :class "bar-box"

@@ -4,7 +4,7 @@ import Bar from "./widget/Bar"
 import { execAsync } from "ags/process"
 import RightPanel from "./widget/RightPanel"
 
-execAsync([ "zsh", "-c", "inotifywait -q -r -e CLOSE_WRITE . && (ags quit; ags run)" ])
+execAsync([ "bash", "-c", "inotifywait -q -r -e CLOSE_WRITE . && (ags quit; ags run)" ])
   .catch(e => print(e))
 
 app.start({

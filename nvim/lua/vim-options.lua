@@ -16,7 +16,6 @@ vim.cmd("tnoremap <Esc> <C-\\><C-n>")
 vim.keymap.set("n", "U", "<C-r>", {})
 
 -- tabs
-vim.keymap.set("n", "<Tab>", ":tabNext<CR>", {})
 vim.keymap.set("n", "<S-Tab>", ":tabprevious<CR>", {})
 
 -- ctrl keymaps
