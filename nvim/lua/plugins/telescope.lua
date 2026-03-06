@@ -6,6 +6,7 @@ return {
 			local builtin = require("telescope.builtin")
 			vim.keymap.set("n", "<C-f>", builtin.find_files, {})
             vim.keymap.set("n", "tb", ":Telescope buffers<CR>", {})
+            vim.keymap.set("n", "T", ":Telescope<CR>", {})
             require('telescope').setup{
                 defaults = {
                     mappings = {
