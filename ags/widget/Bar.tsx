@@ -1,6 +1,7 @@
 import app from "ags/gtk4/app"
 import { Astal, Gdk, Gtk } from "ags/gtk4"
 import Clock from "./Clock"
+import Workspaces from "./Workspaces"
 
 
 export default (gdkmonitor: Gdk.Monitor) => {
@@ -20,14 +21,10 @@ export default (gdkmonitor: Gdk.Monitor) => {
           <label label={"hi"} />
         </box>
         <box $type="center">
-          <label label={"hi"} />
+          <Workspaces />
         </box>
         <box $type="end">
-          <Clock>
-            <Gtk.EventControllerMotion
-              onEnter={() => app.toggle_window("right")}
-            />
-          </Clock>
+          <Clock />
         </box>
       </centerbox>
     </window>
