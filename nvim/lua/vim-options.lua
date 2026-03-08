@@ -1,4 +1,4 @@
-local tabsize=4
+local tabsize=2
 
 vim.cmd("set expandtab")
 vim.cmd("set tabstop=" .. tabsize)

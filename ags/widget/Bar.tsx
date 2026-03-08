@@ -1,7 +1,7 @@
 import app from "ags/gtk4/app"
-import { Astal, Gdk, Gtk } from "ags/gtk4"
-import Clock from "./Clock"
-import Workspaces from "./Workspaces"
+import { Astal, Gdk } from "ags/gtk4"
+import { Clock } from "./Clock"
+import { Workspaces } from "./Workspaces"
 
 
 export default (gdkmonitor: Gdk.Monitor) => {
@@ -18,7 +18,6 @@ export default (gdkmonitor: Gdk.Monitor) => {
     >
       <centerbox>
         <box $type="start">
-          <label label={"hi"} />
         </box>
         <box $type="center">
           <Workspaces />
