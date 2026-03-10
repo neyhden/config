@@ -35,3 +35,6 @@ popover {
 .workspace:hover {
   border-top: 2px solid white;
 }
+.workspace.active {
+  background-color: red;
+}

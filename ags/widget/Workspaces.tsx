@@ -1,15 +1,21 @@
 import { Gtk } from "ags/gtk4"
 import AstalHyprland from "gi://AstalHyprland?version=0.1"
-import { createBinding } from "gnim"
+import { createBinding, createComputed, createConnection } from "gnim"
 
 
 export const Workspaces = () => {
   const hyprland = AstalHyprland.get_default()
 
   const Workspace = ({ id }: {id: number}) => {
+    const isVisible = createBinding(hyprland, "workspaces").as(w => hyprland.get_workspace(id) != null)
+
+    const isFocused = createBinding(hyprland, "focused_workspace").as(w => w.id == id )
+    const isUrgent = 1
+
+
     return (
       <button
-        visible={createBinding(hyprland, "workspaces").as(w => hyprland.get_workspace(id) != null)}
+        visible={isVisible}
         class={"workspace"}
         onClicked={() => hyprland.dispatch("workspace", id.toString())}
       >
