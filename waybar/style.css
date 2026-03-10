@@ -1,0 +1,100 @@
+* {
+  border-radius: 0px;
+  font-family: FiraCodeNerdFontMono;
+  font-weight: bold;
+  font-size: 16px;
+  min-height: 0px;
+}
+
+window#waybar {
+  background-color: rgba(20, 20, 20, 1);
+  color: #ffffff;
+  transition-property: background-color;
+  transition-duration: .5s;
+  border-bottom: 2px solid white;
+}
+
+#workspaces button {
+    box-shadow: none;
+    text-shadow: none;
+  color: #ffffff;
+}
+
+#workspaces button.empty {
+  color: #333333;
+}
+
+#workspaces button:hover {
+  background: rgba(60, 60, 60, 1);
+}
+
+#workspaces button.active {
+  background-color: white;
+  color: black;
+}
+
+#workspaces button.urgent {
+  border: 2px solid red;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-apps,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#power-profiles-daemon,
+#keyboard-state,
+#mpd {
+  margin: 5px;
+  padding: 0 10px;
+  color: #ffffff;
+}
+
+#window,
+#workspaces {
+    margin: 0 0;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#battery {
+  color: #ffffff;
+}
+
+#battery.charging, #battery.plugged {
+  color: #26A65B;
+}
+
+#battery.critical:not(.charging) {
+  color: #f53c3c;
+}
+
+label:focus {
+  background-color: #000000;
+}
+
+#keyboard-state label.locked {
+  color: #ff7777;
+}
+
+#tempreature.critical {
+  color: red;
+}
