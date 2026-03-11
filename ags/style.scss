@@ -5,6 +5,7 @@ $color: #FFFFCC;
   all: unset;
   font-size: 18px;
   font-weight: bold;
+  font-family: FiraCodeNerdFont;
 }
 
 popover {
@@ -35,6 +36,7 @@ popover {
 .workspace:hover {
   border-top: 2px solid white;
 }
-.workspace.active {
-  background-color: red;
+.workspace.focused {
+  background-color: white;
+  color: black;
 }
