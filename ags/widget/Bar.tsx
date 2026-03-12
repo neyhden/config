@@ -3,6 +3,7 @@ import { Astal, Gdk } from "ags/gtk4"
 import { Clock } from "./Clock"
 import { Workspaces } from "./Workspaces"
 import { MicVolume, SpeakerVolume } from "./Volume"
+import { BatteryLevel } from "./Battery"
 
 
 export default (gdkmonitor: Gdk.Monitor) => {
@@ -19,6 +20,7 @@ export default (gdkmonitor: Gdk.Monitor) => {
     >
       <centerbox>
         <box $type="start">
+          <BatteryLevel />
         </box>
         <box $type="center">
           <Workspaces />

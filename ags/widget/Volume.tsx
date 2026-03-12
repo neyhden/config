@@ -3,7 +3,7 @@ import { Metric } from "./Metric"
 import { createBinding } from "gnim"
 
 export const SpeakerVolume = () => {
-  const speaker = AstalWp.get_default().get_audio().get_default_speaker()
+  const speaker = AstalWp.get_default()!.get_audio()!.get_default_speaker()!
 
   return (
     <Metric
@@ -17,7 +17,7 @@ export const SpeakerVolume = () => {
 }
 
 export const MicVolume = () => {
-  const mic = AstalWp.get_default().get_audio().get_default_microphone()
+  const mic = AstalWp.get_default()!.get_audio()!.get_default_microphone()!
 
   return (
     <Metric
