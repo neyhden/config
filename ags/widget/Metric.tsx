@@ -2,13 +2,13 @@ import { Gtk } from "ags/gtk4"
 import { Accessor } from "gnim"
 
 interface props {
-  iconName: string | Accessor<string> | undefined,
-  label: string | Accessor<string> | undefined,
-  onLeftClick: () => void | undefined,
-  onRightClick: () => void | undefined,
-  onMiddleClick: () => void | undefined,
-  onScrollUp: () => void | undefined,
-  onScrollDown: () => void | undefined,
+  iconName?: string | Accessor<string>
+  label?: string | Accessor<string>
+  onLeftClick?: () => void
+  onRightClick?: () => void
+  onMiddleClick?: () => void
+  onScrollUp?: () => void
+  onScrollDown?: () => void
 }
 export const Metric = (
   {
@@ -24,6 +24,8 @@ export const Metric = (
   return (
     <box orientation={Gtk.Orientation.HORIZONTAL}>
       <Gtk.EventControllerScroll
+        flags={Gtk.EventControllerScrollFlags.VERTICAL}
+        onScroll={(_source, _h, v) => v < 0 ? onScrollUp && onScrollUp() : onScrollDown && onScrollDown()}
       />
       <Gtk.GestureClick // left click
         onPressed={onLeftClick}

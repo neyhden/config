@@ -2,6 +2,7 @@ import app from "ags/gtk4/app"
 import { Astal, Gdk } from "ags/gtk4"
 import { Clock } from "./Clock"
 import { Workspaces } from "./Workspaces"
+import { MicVolume, SpeakerVolume } from "./Volume"
 
 
 export default (gdkmonitor: Gdk.Monitor) => {
@@ -23,6 +24,8 @@ export default (gdkmonitor: Gdk.Monitor) => {
           <Workspaces />
         </box>
         <box $type="end">
+          <SpeakerVolume />
+          <MicVolume />
           <Clock />
         </box>
       </centerbox>
