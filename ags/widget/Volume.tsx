@@ -7,6 +7,7 @@ export const SpeakerVolume = () => {
 
   return (
     <Metric
+      className="speaker-metric"
       iconName={createBinding(speaker, "volumeIcon")}
       label={createBinding(speaker, "volume").as(v => `${(v*100).toFixed(0)}%`)}
       onScrollUp={() => speaker.volume += 0.05}
@@ -21,6 +22,7 @@ export const MicVolume = () => {
 
   return (
     <Metric
+      className="mic-metric"
       iconName={createBinding(mic, "volumeIcon")}
       label={createBinding(mic, "volume").as(v => `${(v*100).toFixed(0)}%`)}
       onScrollUp={() => mic.volume += 0.05}

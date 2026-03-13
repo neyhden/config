@@ -7,6 +7,7 @@ export const BatteryLevel = () => {
 
   return (
     <Metric
+      className="battery-metric"
       label={createBinding(battery, "batteryLevel").as(v => `${(v*100).toFixed(0)}%`)}
       iconName={createBinding(battery, "batteryIconName")}
     />

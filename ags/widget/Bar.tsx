@@ -4,6 +4,7 @@ import { Clock } from "./Clock"
 import { Workspaces } from "./Workspaces"
 import { MicVolume, SpeakerVolume } from "./Volume"
 import { BatteryLevel } from "./Battery"
+import { NetworkStatus } from "./Network"
 
 
 export default (gdkmonitor: Gdk.Monitor) => {
@@ -19,13 +20,14 @@ export default (gdkmonitor: Gdk.Monitor) => {
       application={app}
     >
       <centerbox>
-        <box $type="start">
+        <box $type="start" spacing={10}>
+          <NetworkStatus />
           <BatteryLevel />
         </box>
         <box $type="center">
           <Workspaces />
         </box>
-        <box $type="end">
+        <box $type="end" spacing={10}>
           <SpeakerVolume />
           <MicVolume />
           <Clock />

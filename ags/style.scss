@@ -40,3 +40,29 @@ popover {
   background-color: white;
   color: black;
 }
+
+.metric {
+  border-bottom: 2px solid;
+  padding-bottom: 2px;
+}
+.metric:hover {
+  border-bottom: 4px solid;
+  padding-bottom: 0px;
+}
+
+.speaker-metric {
+  color: violet;
+  border-color: violet;
+}
+.mic-metric {
+  color: #e64;
+  border-color: #e64;
+}
+.battery-metric {
+  color: lightgreen;
+  border-color: lightgreen;
+}
+.network-metric {
+  color: #7ff;
+  border-color: #7ff;
+}

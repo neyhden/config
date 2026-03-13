@@ -1,9 +1,10 @@
 import { Gtk } from "ags/gtk4"
-import { Accessor } from "gnim"
+import { Accessor, createBinding } from "gnim"
 
 interface props {
   iconName?: string | Accessor<string>
   label?: string | Accessor<string>
+  className?: string
   onLeftClick?: () => void
   onRightClick?: () => void
   onMiddleClick?: () => void
@@ -14,6 +15,7 @@ export const Metric = (
   {
     iconName,
     label,
+    className,
     onLeftClick,
     onRightClick,
     onMiddleClick,
@@ -22,7 +24,11 @@ export const Metric = (
   }: props
 ) => {
   return (
-    <box orientation={Gtk.Orientation.HORIZONTAL}>
+    <box
+      orientation={Gtk.Orientation.HORIZONTAL}
+      spacing={5}
+      class={className + ' metric'}
+    >
       <Gtk.EventControllerScroll
         flags={Gtk.EventControllerScrollFlags.VERTICAL}
         onScroll={(_source, _h, v) => v < 0 ? onScrollUp && onScrollUp() : onScrollDown && onScrollDown()}
