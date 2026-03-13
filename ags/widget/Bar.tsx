@@ -7,7 +7,7 @@ import { BatteryLevel } from "./Battery"
 import { NetworkStatus } from "./Network"
 
 
-export default (gdkmonitor: Gdk.Monitor) => {
+export default ({ gdkmonitor }:{ gdkmonitor: Gdk.Monitor }) => {
   const { TOP, LEFT, RIGHT } = Astal.WindowAnchor
 
   return (

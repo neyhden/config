@@ -25,10 +25,6 @@ popover {
   background: $bg;
 }
 
-.clock {
-  min-width: 150px;
-}
-
 .workspace {
   padding: 3px;
   border-top: 2px solid transparent;
@@ -65,4 +61,7 @@ popover {
 .network-metric {
   color: #7ff;
   border-color: #7ff;
+}
+.clock-metric > label {
+  min-width: 130px;
 }

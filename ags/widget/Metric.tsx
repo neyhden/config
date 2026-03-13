@@ -45,7 +45,7 @@ export const Metric = (
         onPressed={onRightClick}
         button={3}
       />
-      <image icon_name={iconName} />
+      <image visible={iconName != undefined} icon_name={iconName} />
       <label label={label} />
     </box>
   )
