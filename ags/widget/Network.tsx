@@ -18,7 +18,7 @@ export const NetworkStatus = () => {
         break;
       }
       case AstalNetwork.Primary.WIRED: {
-        setLabel("")
+        setLabel(showIp() ? exec("hostname -I").split(' ').join(" - ") : "")
         setIcon(network.wired.iconName)
         break;
       }
