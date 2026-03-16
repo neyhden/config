@@ -11,6 +11,7 @@ import { Mpris, MprisToggle } from "./MPRIS"
 
 export const Bar = ({ gdkmonitor }:{ gdkmonitor: Gdk.Monitor }) => {
   const { TOP, LEFT, RIGHT } = Astal.WindowAnchor
+  const monIndex = app.monitors.indexOf(gdkmonitor)
 
   return (
     <window
@@ -31,7 +32,7 @@ export const Bar = ({ gdkmonitor }:{ gdkmonitor: Gdk.Monitor }) => {
           <Workspaces />
         </box>
         <box $type="end" spacing={10}>
-          <MprisToggle />
+          <MprisToggle monIndex={monIndex} />
           <SpeakerVolume />
           <MicVolume />
           <Clock />

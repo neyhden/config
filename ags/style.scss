@@ -22,7 +22,7 @@ popover {
   min-height: 32px;
 }
 
-#mpris {
+.mpris {
   background: $bg;
 }
 
@@ -65,4 +65,33 @@ popover {
 }
 .clock-metric > label {
   min-width: 130px;
+}
+
+scale {
+  min-width: 200px;
+  min-height: 20px;
+}
+trough {
+  min-width: 200px;
+  min-height: 20px;
+  background: rgba(0, 0, 0, 0.5);
+}
+highlight {
+  background: white;
+}
+slider {
+  visibility: hidden;
+}
+
+.mpris-button {
+  color: rgba(255, 255, 255, 0.5)
+}
+.mpris-button:disabled {
+  color: rgba(255, 255, 255, 0.1)
+}
+.mpris-button:hover {
+  color: rgba(255, 255, 255, 0.8)
+}
+.mpris-button:active {
+  color: rgba(255, 255, 255, 1)
 }
