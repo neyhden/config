@@ -3,6 +3,21 @@ import app from "ags/gtk4/app"
 import AstalMpris from "gi://AstalMpris?version=0.1"
 import { createBinding, For } from "gnim"
 import { Metric } from "./Metric"
+import GLib from "gi://GLib?version=2.0"
+
+let mprisWinVis = 0
+let mprisWinTimer: GLib.Source
+const updateMprisWin = (delta: number) => {
+  mprisWinVis += delta
+  if (mprisWinVis > 0) {
+    mprisWinTimer && clearTimeout(mprisWinTimer)
+    app.get_window("mpris")!.visible = true
+  } else {
+    mprisWinTimer = setTimeout(() => {
+      app.get_window("mpris")!.visible = false
+    }, 20)
+  }
+}
 
 export const MprisWindow = ({ gdkmonitor }:{ gdkmonitor: Gdk.Monitor }) => {
   const { TOP, RIGHT } = Astal.WindowAnchor
@@ -10,7 +25,7 @@ export const MprisWindow = ({ gdkmonitor }:{ gdkmonitor: Gdk.Monitor }) => {
   return (
     <window
       name={`mpris`}
-      keymode={Astal.Keymode.NONE}
+      keymode={Astal.Keymode.ON_DEMAND}
       gdkmonitor={gdkmonitor}
       exclusivity={Astal.Exclusivity.IGNORE}
       anchor={ TOP | RIGHT }
@@ -18,6 +33,10 @@ export const MprisWindow = ({ gdkmonitor }:{ gdkmonitor: Gdk.Monitor }) => {
       marginTop={32}
       marginRight={230}
     >
+      <Gtk.EventControllerMotion
+        onEnter={() => updateMprisWin(1)}
+        onLeave={() => updateMprisWin(-1)}
+      />
       <Mpris />
     </window>
   )
@@ -27,8 +46,8 @@ export const MprisToggle = () => {
   return (
     <Metric
       iconName={"multimedia-player-symbolic"}
-      onHoverEnter={() => app.toggle_window("mpris")}
-      onHoverExit={() => app.toggle_window("mpris")}
+      onHoverEnter={() => updateMprisWin(1)}
+      onHoverExit={() => updateMprisWin(-1)}
     />
   )
 }
@@ -45,10 +64,10 @@ export const Mpris = () => {
         {player =>
           <box orientation={v}>
             <box spacing={16}>
-              <image file={player.coverArt} pixelSize={128} />
+              <image file={createBinding(player, "coverArt")} pixelSize={128} />
               <box orientation={v} valign={c} spacing={8}>
-                <label label={player.title} />
-                <label label={player.artist} />
+                <label label={createBinding(player, "title")} />
+                <label label={createBinding(player, "artist")} />
               </box>
             </box>
             <box orientation={v} spacing={8}>
