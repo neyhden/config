@@ -3,6 +3,7 @@ import { Accessor } from "gnim"
 
 interface props {
   iconName?: string | Accessor<string>
+  iconPath?: string | Accessor<string>
   label?: string | Accessor<string>
   className?: string | Accessor<string>
   tooltip?: string | Accessor<string>
@@ -17,6 +18,7 @@ interface props {
 export const Metric = (
   {
     iconName,
+    iconPath,
     label,
     className,
     tooltip,
@@ -56,7 +58,7 @@ export const Metric = (
         onPressed={onRightClick}
         button={3}
       />
-      <image visible={iconName != undefined} icon_name={iconName} />
+      <image visible={iconName != undefined} icon_name={iconName} file={iconPath} />
       <label label={label} />
     </box>
   )

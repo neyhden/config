@@ -69,15 +69,20 @@ popover {
 
 scale {
   min-width: 200px;
-  min-height: 20px;
+  min-height: 15px;
 }
 trough {
   min-width: 200px;
-  min-height: 20px;
+  min-height: 15px;
+  border-radius: 10px;
   background: rgba(0, 0, 0, 0.5);
 }
 highlight {
   background: white;
+  border-radius: 0px;
+}
+highlight:disabled {
+  background: gray;
 }
 slider {
   visibility: hidden;
@@ -85,6 +90,12 @@ slider {
 
 .mpris-button {
   color: rgba(255, 255, 255, 0.5)
+}
+.mpris-button:focus {
+  color: rgba(240, 190, 20, 0.7);
+}
+.mpris-button:focus:active {
+  color: rgba(250, 190, 50, 1);
 }
 .mpris-button:disabled {
   color: rgba(255, 255, 255, 0.1)
@@ -94,4 +105,17 @@ slider {
 }
 .mpris-button:active {
   color: rgba(255, 255, 255, 1)
+}
+.mpris-button:focus:hover:active {
+  color: rgba(255, 255, 255, 1)
+}
+
+.mpris-title {
+  color: rgba(255, 255, 255, 1);
+  font-weight: bold;
+  font-size: 16px;
+}
+.mpris-artist {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 12px;
 }

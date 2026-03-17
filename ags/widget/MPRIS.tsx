@@ -4,6 +4,7 @@ import AstalMpris from "gi://AstalMpris?version=0.1"
 import { createBinding, For } from "gnim"
 import { Metric } from "./Metric"
 import GLib from "gi://GLib?version=2.0"
+import Pango from "gi://Pango?version=1.0"
 
 let mprisWinVis = 0
 let mprisWinTimer: GLib.Source
@@ -33,11 +34,21 @@ export const MprisWindow = ({ gdkmonitor }:{ gdkmonitor: Gdk.Monitor }) => {
       anchor={ TOP | RIGHT }
       application={app}
       marginTop={32}
-      marginRight={230}
+      marginRight={110}
+      defaultWidth={400}
     >
       <Gtk.EventControllerMotion
         onEnter={() => updateMprisWin(1, monIndex)}
         onLeave={() => updateMprisWin(-1, monIndex)}
+      />
+      <Gtk.EventControllerKey
+        onKeyPressed={({ widget }, keyval: number) => {
+          if (keyval === Gdk.KEY_Escape) {
+            widget.hide()
+          } else if (keyval === Gdk.KEY_space) {
+            AstalMpris.get_default().get_players()[0]?.play_pause()
+          }
+        }}
       />
       <Mpris />
     </window>
@@ -60,7 +71,7 @@ export const Mpris = () => {
   const v = Gtk.Orientation.VERTICAL
   const c = Gtk.Align.CENTER
   const formatSeconds = (ss: number) => {
-    let mm: number = ss / 60
+    let mm: number = Math.floor(ss / 60)
     ss = ss % 60
     let mmstr = ""
     let ssstr = ""
@@ -68,7 +79,8 @@ export const Mpris = () => {
     else mmstr = mm.toFixed(0)
     if (ss < 10) ssstr = "0" + ss.toFixed(0)
     else ssstr = ss.toFixed(0)
-    return `${mmstr}:${ssstr}`
+    const str = `${mmstr}:${ssstr}`
+    return str
   }
 
   return (
@@ -79,28 +91,48 @@ export const Mpris = () => {
             <box spacing={16}>
               <image file={createBinding(player, "coverArt")} pixelSize={128} />
               <box orientation={v} valign={c} spacing={8}>
-                <label label={createBinding(player, "title")} />
-                <label label={createBinding(player, "artist")} />
+                <label
+                  class={"mpris-title"}
+                  label={createBinding(player, "title")}
+                  overflow={Gtk.Overflow.HIDDEN}
+                  wrap
+                  wrapMode={Pango.WrapMode.WORD}
+                  halign={c}
+                  justify={Gtk.Justification.CENTER}
+                />
+                <label
+                  class={"mpris-artist"}
+                  label={createBinding(player, "artist")}
+                  overflow={Gtk.Overflow.HIDDEN}
+                  wrap
+                  wrapMode={Pango.WrapMode.WORD}
+                  halign={c}
+                  justify={Gtk.Justification.CENTER}
+                />
               </box>
             </box>
             <box orientation={v} spacing={8}>
               <box spacing={16} halign={c}>
                 <button
+                  focusable={false}
                   class={"mpris-button"}
                   iconName={"media-skip-backward-symbolic"}
                   onClicked={() => player.previous()}
                   sensitive={createBinding(player, "canGoPrevious")}
                 />
                 <button
+                  focusable={false}
                   class={"mpris-button"}
                   iconName={createBinding(player, "playbackStatus").as(s => {
                   return s == AstalMpris.PlaybackStatus.PAUSED
                       ? "media-playback-start-symbolic"
                       : "media-playback-pause-symbolic"
                   })}
+                  sensitive={createBinding(player, "canPause")}
                   onClicked={() => player.play_pause()}
                 />
                 <button
+                  focusable={false}
                   class={"mpris-button"}
                   iconName={"media-skip-forward-symbolic"}
                   onClicked={() => player.next()}
@@ -110,14 +142,15 @@ export const Mpris = () => {
               <box halign={c} spacing={16}>
                 <label label={createBinding(player, "position").as(formatSeconds)} />
                 <slider
-                  value={createBinding(player, "position").as(p => p / player.length)}
+                  focusable={false}
+                  value={createBinding(player, "position")}
                   onChangeValue={(source, scrollType, value) => {
-                    console.log(scrollType)
-                    console.log(value)
-                    player.position = source.value
+                    player.set_position(source.value * player.length);
+                    value = source.value * player.length
                   }}
+                  sensitive={createBinding(player, "canSeek")}
                   min={0}
-                  max={1}
+                  max={createBinding(player, "length")}
                 />
                 <label label={createBinding(player, "length").as(formatSeconds)} />
               </box>
