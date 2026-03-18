@@ -90,15 +90,15 @@ export const Mpris = () => {
           <box orientation={v}>
             <box spacing={16}>
               <image file={createBinding(player, "coverArt")} pixelSize={128} />
-              <box orientation={v} valign={c} spacing={8}>
+              <box orientation={v} valign={c} halign={Gtk.Align.START} spacing={8}>
                 <label
                   class={"mpris-title"}
                   label={createBinding(player, "title")}
                   overflow={Gtk.Overflow.HIDDEN}
                   wrap
                   wrapMode={Pango.WrapMode.WORD}
-                  halign={c}
-                  justify={Gtk.Justification.CENTER}
+                  halign={Gtk.Align.START}
+                  justify={Gtk.Justification.LEFT}
                 />
                 <label
                   class={"mpris-artist"}
@@ -106,8 +106,8 @@ export const Mpris = () => {
                   overflow={Gtk.Overflow.HIDDEN}
                   wrap
                   wrapMode={Pango.WrapMode.WORD}
-                  halign={c}
-                  justify={Gtk.Justification.CENTER}
+                  halign={Gtk.Align.START}
+                  justify={Gtk.Justification.LEFT}
                 />
               </box>
             </box>
@@ -148,7 +148,7 @@ export const Mpris = () => {
                     player.set_position(source.value * player.length);
                     value = source.value * player.length
                   }}
-                  sensitive={createBinding(player, "canSeek")}
+                  sensitive={false} //TODO Doesnt work for some reason
                   min={0}
                   max={createBinding(player, "length")}
                 />
