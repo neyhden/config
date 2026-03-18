@@ -22,7 +22,7 @@ return {
       },
       livePreview = true,
     })
-		vim.keymap.set("n", "<leader>T", ":Themery<CR>", {})
+		vim.keymap.set("n", "<leader>T", ":Themery<CR>", { desc = "Themery" })
   end
 }
 

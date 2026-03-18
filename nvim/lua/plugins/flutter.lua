@@ -70,6 +70,6 @@ return {
       }
         }
         require("telescope").load_extension("flutter")
-        vim.keymap.set("n", "<leader>ft", ":Telescope flutter commands<CR>", {})
+        vim.keymap.set("n", "<leader>ft", ":Telescope flutter commands<CR>", { desc = "Telescope flutter commands" })
     end,
 }
