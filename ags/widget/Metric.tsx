@@ -1,9 +1,11 @@
 import { Gtk } from "ags/gtk4"
+import Gio from "gi://Gio?version=2.0"
 import { Accessor } from "gnim"
 
 interface props {
   iconName?: string | Accessor<string>
   iconPath?: string | Accessor<string>
+  gicon?: Gio.Icon | Accessor<Gio.Icon>
   label?: string | Accessor<string>
   className?: string | Accessor<string>
   tooltip?: string | Accessor<string>
@@ -14,11 +16,13 @@ interface props {
   onScrollDown?: () => void
   onHoverEnter?: () => void
   onHoverExit?: () => void
+  children?: JSX.Element | Array<JSX.Element>
 }
 export const Metric = (
   {
     iconName,
     iconPath,
+    gicon,
     label,
     className,
     tooltip,
@@ -28,7 +32,8 @@ export const Metric = (
     onScrollUp,
     onScrollDown,
     onHoverEnter,
-    onHoverExit
+    onHoverExit,
+    children
   }: props
 ) => {
   return (
@@ -58,8 +63,14 @@ export const Metric = (
         onPressed={onRightClick}
         button={3}
       />
-      <image visible={iconName != undefined} icon_name={iconName} file={iconPath} />
+      <image
+        visible={ iconName != undefined || iconPath != undefined || gicon != undefined }
+        icon_name={iconName}
+        file={iconPath}
+        gicon={gicon}
+      />
       <label label={label} />
+      { children }
     </box>
   )
 }

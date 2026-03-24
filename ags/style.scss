@@ -90,9 +90,6 @@ highlight {
 highlight:disabled {
   background: gray;
 }
-slider {
-  visibility: hidden;
-}
 
 .mpris-button {
   color: rgba(255, 255, 255, 0.5)
@@ -136,9 +133,6 @@ tooltip label {
 
 calendar .other-month {
   color: #ffffff44;
-}
-calendar grid {
-  gap: 0;
 }
 calendar grid label {
   margin: 0;

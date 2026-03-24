@@ -1,8 +1,7 @@
 import AstalTray from "gi://AstalTray?version=0.1"
-import { createBinding, createEffect, For } from "gnim"
+import { createBinding, For } from "gnim"
 import { Metric } from "./Metric"
-import { Astal, Gdk, Gtk } from "ags/gtk4"
-import app from "ags/gtk4/app"
+import { Gtk } from "ags/gtk4"
 
 export const SysTray = () => {
   const tray = AstalTray.get_default()
@@ -12,14 +11,16 @@ export const SysTray = () => {
     <box orientation={Gtk.Orientation.HORIZONTAL} spacing={1}>
       <For each={items}>
         {(item) => {
-          return <Metric
-            iconName={item.iconName || "view-grid-symbolic"}
-            tooltip={item.title || "Failed to get name"}
-            onLeftClick={() => item.activate(0, 0)}
-            onRightClick={() => item.secondary_activate(0, 0)}
-          />
-        }
-        }
+          return (
+            <Metric
+              gicon={createBinding(item, "gicon")}
+              iconName={"d"}
+              tooltip={item.title || "Failed to get name"}
+              onLeftClick={() => item.activate(0, 0)}
+              onRightClick={() => item.secondary_activate(0, 0)}
+            />
+          )
+        }}
       </For>
     </box>
   )
