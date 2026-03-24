@@ -27,6 +27,11 @@ popover {
   padding: 8px;
 }
 
+.calendar {
+  background: $bg;
+  padding: 8px;
+}
+
 .workspace {
   padding: 3px;
   border-top: 2px solid transparent;
@@ -127,4 +132,19 @@ tooltip {
 }
 tooltip label {
   font-size: 16px;
+}
+
+calendar .other-month {
+  color: #ffffff44;
+}
+calendar grid {
+  gap: 0;
+}
+calendar grid label {
+  margin: 0;
+  padding: 0;
+}
+calendar .today {
+  border: 2px solid #f66a;
+  border-radius: 100px;
 }

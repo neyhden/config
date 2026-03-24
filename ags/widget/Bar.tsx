@@ -35,7 +35,7 @@ export const Bar = ({ gdkmonitor }:{ gdkmonitor: Gdk.Monitor }) => {
           <MprisToggle monIndex={monIndex} />
           <SpeakerVolume />
           <MicVolume />
-          <Clock />
+          <Clock monIndex={monIndex} />
         </box>
       </centerbox>
     </window>
