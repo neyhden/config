@@ -5,7 +5,10 @@ import { exec } from "ags/process"
 
 export const NetworkStatus = () => {
   const network = AstalNetwork.get_default()
+
   const primary = createBinding(network, "primary")
+  const wireIcon = createBinding(network.wired, "iconName")
+  const wifiIcon = createBinding(network.wifi, "iconName")
 
   const [label, setLabel] = createState<string>("")
   const [icon, setIcon] = createState("")
@@ -14,16 +17,16 @@ export const NetworkStatus = () => {
     switch (primary()) {
       case AstalNetwork.Primary.WIFI: {
         setLabel(showIp() ? exec("hostname -I").split(' ').join(" - ") : network.wifi.ssid)
-        setIcon(network.wifi.iconName)
+        setIcon(wifiIcon())
         break;
       }
       case AstalNetwork.Primary.WIRED: {
         setLabel(showIp() ? exec("hostname -I").split(' ').join(" - ") : "")
-        setIcon(network.wired.iconName)
+        setIcon(wireIcon())
         break;
       }
       case AstalNetwork.Primary.UNKNOWN: {
-        setLabel("Unknown network")
+        setLabel("No connection")
         setIcon("network-wireless-no-route-symbolic")
         break;
       }
