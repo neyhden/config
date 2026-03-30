@@ -7,6 +7,7 @@ import { BatteryLevel } from "./Battery"
 import { NetworkStatus } from "./Network"
 import { SysTray } from "./SysTray"
 import { Mpris, MprisToggle } from "./MPRIS"
+import { Brightness } from "./Brightness"
 
 
 export const Bar = ({ gdkmonitor }:{ gdkmonitor: Gdk.Monitor }) => {
@@ -35,6 +36,7 @@ export const Bar = ({ gdkmonitor }:{ gdkmonitor: Gdk.Monitor }) => {
           <MprisToggle monIndex={monIndex} />
           <SpeakerVolume />
           <MicVolume />
+          <Brightness />
           <Clock monIndex={monIndex} />
         </box>
       </centerbox>
