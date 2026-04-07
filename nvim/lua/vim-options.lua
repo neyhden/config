@@ -32,6 +32,7 @@ vim.keymap.set({"n", "v"}, "k", "gk", {})
 vim.keymap.set({"n", "v"}, "gb", "[{", {})
 vim.keymap.set({"n", "v"}, "ge", "]}", {})
 
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 vim.o.winborder = "rounded"
 vim.g.mapleader = " "
 vim.opt.relativenumber = false
