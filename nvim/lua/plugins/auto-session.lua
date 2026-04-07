@@ -27,7 +27,7 @@ return {
     preserve_buffer_on_restore = nil, -- Function that returns true if a buffer should be preserved when restoring a session
 
     -- Git / Session naming
-    git_use_branch_name = false, -- Include git branch name in session name, can also be a function that takes an optional path and returns the name of the branch
+    git_use_branch_name = true, -- Include git branch name in session name, can also be a function that takes an optional path and returns the name of the branch
     git_auto_restore_on_branch_change = false, -- Should we auto-restore the session when the git branch changes. Requires git_use_branch_name
     custom_session_tag = nil, -- Function that can return a string to be used as part of the session name
 
