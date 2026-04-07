@@ -34,7 +34,7 @@ return {
         return nil
       end
       local res = string.gsub(out[1], "#", "/")
-      return out[1]
+      return res
     end, -- Include git branch name in session name, can also be a function that takes an optional path and returns the name of the branch
     git_auto_restore_on_branch_change = false, -- Should we auto-restore the session when the git branch changes. Requires git_use_branch_name
     custom_session_tag = nil, -- Function that can return a string to be used as part of the session name
