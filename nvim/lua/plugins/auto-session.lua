@@ -3,6 +3,12 @@ return {
   lazy = false,
 
   opts = {
+    -- Hooks
+    post_restore_cmds = {
+      "let buf=bufnr('%') | exec 'bufdo #' | exec 'b' buf", -- Load buffers
+      "Neotree show", -- Show neotree
+    },
+
     -- Saving / restoring
     enabled = true, -- Enables/disables auto creating, saving and restoring
     auto_save = true, -- Enables/disables auto saving session on exit
@@ -15,8 +21,8 @@ return {
     -- Filtering
     suppressed_dirs = nil, -- Suppress session restore/create in certain directories
     allowed_dirs = nil, -- Allow session restore/create in certain directories
-    bypass_save_filetypes = nil, -- List of filetypes to bypass auto save when the only buffer open is one of the file types listed, useful to ignore dashboards
-    close_filetypes_on_save = { "checkhealth" }, -- Buffers with matching filetypes will be closed before saving
+    bypass_save_filetypes = { "neo-tree", "alpha", "dashboard", "snacks_dashboard" }, -- List of filetypes to bypass auto save when the only buffer open is one of the file types listed, useful to ignore dashboards
+    close_filetypes_on_save = { "checkhealth", "neo-tree" }, -- Buffers with matching filetypes will be closed before saving
     close_unsupported_windows = true, -- Close windows that aren't backed by normal file before autosaving a session
     preserve_buffer_on_restore = nil, -- Function that returns true if a buffer should be preserved when restoring a session
 
@@ -42,7 +48,7 @@ return {
     root_dir = vim.fn.stdpath("data") .. "/sessions/", -- Root dir where sessions will be stored
     show_auto_restore_notif = false, -- Whether to show a notification when auto-restoring
     restore_error_handler = nil, -- Function called when there's an error restoring. By default, it ignores fold and help errors otherwise it displays the error and returns false to disable auto_save. Default handler is accessible as require('auto-session').default_restore_error_handler
-    continue_restore_on_error = true, -- Keep loading the session even if there's an error
+    continue_restore_on_error = false, -- Keep loading the session even if there's an error
     lsp_stop_on_restore = false, -- Should language servers be stopped when restoring a session. Can also be a function that will be called if set. Not called on autorestore from startup
     lazy_support = true, -- Automatically detect if Lazy.nvim is being used and wait until Lazy is done to make sure session is restored correctly. Does nothing if Lazy isn't being used
     legacy_cmds = true, -- Define legacy commands: Session*, Autosession (lowercase s), currently true. Set to false to prevent defining them
