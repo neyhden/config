@@ -1,7 +1,7 @@
 import { Astal, Gdk, Gtk } from "ags/gtk4"
 import app from "ags/gtk4/app"
 import AstalMpris from "gi://AstalMpris?version=0.1"
-import { createBinding, For } from "gnim"
+import { Accessor, createBinding, createEffect, createState, For } from "gnim"
 import { Metric } from "./Metric"
 import GLib from "gi://GLib?version=2.0"
 import Pango from "gi://Pango?version=1.0"
@@ -86,77 +86,85 @@ export const Mpris = () => {
   return (
     <box orientation={v}>
       <For each={players}>
-        {player =>
-          <box orientation={v}>
-            <box spacing={16}>
-              <image file={createBinding(player, "coverArt")} pixelSize={128} />
-              <box orientation={v} valign={c} halign={Gtk.Align.START} spacing={8}>
-                <label
-                  class={"mpris-title"}
-                  label={createBinding(player, "title")}
-                  overflow={Gtk.Overflow.HIDDEN}
-                  wrap
-                  wrapMode={Pango.WrapMode.WORD}
-                  halign={Gtk.Align.START}
-                  justify={Gtk.Justification.LEFT}
-                />
-                <label
-                  class={"mpris-artist"}
-                  label={createBinding(player, "artist")}
-                  overflow={Gtk.Overflow.HIDDEN}
-                  wrap
-                  wrapMode={Pango.WrapMode.WORD}
-                  halign={Gtk.Align.START}
-                  justify={Gtk.Justification.LEFT}
-                />
+        {player => {
+          const [realCoverArt, setRealCoverArt] = createState("")
+          createBinding(player, "coverArt").subscribe(() => {
+            if (player.coverArt != "") {
+              setRealCoverArt(player.coverArt);
+            }
+          })
+          return (
+            <box orientation={v}>
+              <box spacing={16}>
+                <image file={realCoverArt} pixelSize={128} />
+                <box orientation={v} valign={c} halign={Gtk.Align.START} spacing={8}>
+                  <label
+                    class={"mpris-title"}
+                    label={createBinding(player, "title")}
+                    overflow={Gtk.Overflow.HIDDEN}
+                    wrap
+                    wrapMode={Pango.WrapMode.WORD}
+                    halign={Gtk.Align.START}
+                    justify={Gtk.Justification.LEFT}
+                  />
+                  <label
+                    class={"mpris-artist"}
+                    label={createBinding(player, "artist")}
+                    overflow={Gtk.Overflow.HIDDEN}
+                    wrap
+                    wrapMode={Pango.WrapMode.WORD}
+                    halign={Gtk.Align.START}
+                    justify={Gtk.Justification.LEFT}
+                  />
+                </box>
+              </box>
+              <box orientation={v} spacing={8}>
+                <box spacing={16} halign={c}>
+                  <button
+                    focusable={false}
+                    class={"mpris-button"}
+                    iconName={"media-skip-backward-symbolic"}
+                    onClicked={() => player.previous()}
+                    sensitive={createBinding(player, "canGoPrevious")}
+                  />
+                  <button
+                    focusable={false}
+                    class={"mpris-button"}
+                    iconName={createBinding(player, "playbackStatus").as(s => {
+                    return s == AstalMpris.PlaybackStatus.PAUSED
+                        ? "media-playback-start-symbolic"
+                        : "media-playback-pause-symbolic"
+                    })}
+                    sensitive={createBinding(player, "canPause")}
+                    onClicked={() => player.play_pause()}
+                  />
+                  <button
+                    focusable={false}
+                    class={"mpris-button"}
+                    iconName={"media-skip-forward-symbolic"}
+                    onClicked={() => player.next()}
+                    sensitive={createBinding(player, "canGoNext")}
+                  />
+                </box>
+                <box halign={c} spacing={16}>
+                  <label label={createBinding(player, "position").as(formatSeconds)} />
+                  <slider
+                    focusable={false}
+                    value={createBinding(player, "position")}
+                    onChangeValue={(source, scrollType, value) => {
+                      player.set_position(source.value * player.length);
+                      value = source.value * player.length
+                    }}
+                    sensitive={false} //TODO Doesnt work for some reason
+                    min={0}
+                    max={createBinding(player, "length")}
+                  />
+                  <label label={createBinding(player, "length").as(formatSeconds)} />
+                </box>
               </box>
             </box>
-            <box orientation={v} spacing={8}>
-              <box spacing={16} halign={c}>
-                <button
-                  focusable={false}
-                  class={"mpris-button"}
-                  iconName={"media-skip-backward-symbolic"}
-                  onClicked={() => player.previous()}
-                  sensitive={createBinding(player, "canGoPrevious")}
-                />
-                <button
-                  focusable={false}
-                  class={"mpris-button"}
-                  iconName={createBinding(player, "playbackStatus").as(s => {
-                  return s == AstalMpris.PlaybackStatus.PAUSED
-                      ? "media-playback-start-symbolic"
-                      : "media-playback-pause-symbolic"
-                  })}
-                  sensitive={createBinding(player, "canPause")}
-                  onClicked={() => player.play_pause()}
-                />
-                <button
-                  focusable={false}
-                  class={"mpris-button"}
-                  iconName={"media-skip-forward-symbolic"}
-                  onClicked={() => player.next()}
-                  sensitive={createBinding(player, "canGoNext")}
-                />
-              </box>
-              <box halign={c} spacing={16}>
-                <label label={createBinding(player, "position").as(formatSeconds)} />
-                <slider
-                  focusable={false}
-                  value={createBinding(player, "position")}
-                  onChangeValue={(source, scrollType, value) => {
-                    player.set_position(source.value * player.length);
-                    value = source.value * player.length
-                  }}
-                  sensitive={false} //TODO Doesnt work for some reason
-                  min={0}
-                  max={createBinding(player, "length")}
-                />
-                <label label={createBinding(player, "length").as(formatSeconds)} />
-              </box>
-            </box>
-          </box>
-        }
+          )
+        }}
       </For>
     </box>
   )
