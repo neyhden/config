@@ -1,6 +1,17 @@
 [plugin]
 
+[open]
+prepend_rules = [
+  { url = "*.html", use = ["open", "edit", "reveal", "exif"] }
+]
+
 [opener]
+play = [
+  { run = "mpv %s", orphan = true, for = "unix" },
+]
 edit = [
-  { run = "nvim %s", block = true, for = "unix" },
+  { run = "nvim %s", block = true, desc = "Edit", for = "unix" },
+]
+open = [
+  { run = "xdg-open %s1", desc = "Open" }
 ]
