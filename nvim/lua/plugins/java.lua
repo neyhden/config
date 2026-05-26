@@ -3,7 +3,7 @@ return {
   config = function()
     require('java').setup({
       java_debug_adapter = {
-        enable = false
+        enable = true
       },
       java_test = {
         enable = false
