@@ -25,6 +25,10 @@ return {
 
     vim.keymap.set("n", "<Leader>db", dap.toggle_breakpoint, { desc = "Toggle breakpoint" })
     vim.keymap.set("n", "<Leader>dc", dap.continue, { desc = "Continue" })
+    vim.keymap.set("n", "<Leader>di", dap.step_into, { desc = "Step into" })
+    vim.keymap.set("n", "<Leader>dv", dap.step_over, { desc = "Step over" })
+    vim.keymap.set("n", "<Leader>do", dap.step_out, { desc = "Step out" })
+    vim.keymap.set("n", "<Leader>dd", dap.disconnect, { desc = "Disconnect" })
 
     dap.configurations.java = {
       {
