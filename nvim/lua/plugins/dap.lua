@@ -29,6 +29,7 @@ return {
     vim.keymap.set("n", "<Leader>dv", dap.step_over, { desc = "Step over" })
     vim.keymap.set("n", "<Leader>do", dap.step_out, { desc = "Step out" })
     vim.keymap.set("n", "<Leader>dd", dap.disconnect, { desc = "Disconnect" })
+    vim.keymap.set("n", "<Leader>du", dapui.toggle(), { desc = "Toggle UI" })
 
     dap.configurations.java = {
       {
