@@ -27,13 +27,13 @@ return {
         source = "filesystem",
         position = "left",
       })
-    end)
+    end, { desc = "Open neotree" })
     vim.keymap.set("n", "<leader>E", function()
       require("neo-tree.command").execute({
         toggle = true,
         source = "filesystem",
         position = "left",
       })
-    end)
+    end, { desc = "Toggle neotree" })
   end,
 }

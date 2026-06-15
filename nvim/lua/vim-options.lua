@@ -12,11 +12,11 @@ vim.cmd("set fillchars=eob:\\ ")
 vim.cmd("set nowritebackup")
 vim.cmd("tnoremap <Esc> <C-\\><C-n>")
 
--- redo
-vim.keymap.set("n", "U", "<C-r>", {})
+vim.g.mapleader = " "
 
--- tabs
+vim.keymap.set("n", "U", "<C-r>", {})
 vim.keymap.set("n", "<S-Tab>", ":tabprevious<CR>", {})
+vim.keymap.set("n", "<Leader>l", ":set invlist<CR>", { desc = "Toggle invis chars" })
 
 -- ctrl keymaps
 vim.keymap.set("n", "<C-z>", "u", {})
@@ -34,7 +34,6 @@ vim.keymap.set({"n", "v"}, "ge", "]}", {})
 
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 vim.o.winborder = "rounded"
-vim.g.mapleader = " "
 vim.opt.relativenumber = false
 
 -- Autocmds
