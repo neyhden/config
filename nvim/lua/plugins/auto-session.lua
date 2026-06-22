@@ -5,7 +5,7 @@ return {
   opts = {
     -- Hooks
     post_restore_cmds = {
-      "let buf=bufnr('%') | exec 'bufdo #' | exec 'b' buf", -- Load buffers
+      "let buf=bufnr('%') | exec 'bufdo update' | exec 'b' buf", -- Load buffers
       "Neotree show", -- Show neotree
     },
 
