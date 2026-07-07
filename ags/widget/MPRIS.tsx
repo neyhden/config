@@ -125,7 +125,7 @@ export const Mpris = () => {
                     class={"mpris-button"}
                     iconName={"media-skip-backward-symbolic"}
                     onClicked={() => player.previous()}
-                    sensitive={createBinding(player, "canGoPrevious")}
+                    sensitive={true/*createBinding(player, "canGoPrevious")*/}
                   />
                   <button
                     focusable={false}
@@ -143,7 +143,7 @@ export const Mpris = () => {
                     class={"mpris-button"}
                     iconName={"media-skip-forward-symbolic"}
                     onClicked={() => player.next()}
-                    sensitive={createBinding(player, "canGoNext")}
+                    sensitive={true/*createBinding(player, "canGoNext")*/}
                   />
                 </box>
                 <box halign={c} spacing={16}>
