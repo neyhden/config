@@ -1,4 +1,6 @@
 local tabsize=2
+local tab2=2
+local tab4=4
 
 vim.cmd("set expandtab")
 vim.cmd("set tabstop=" .. tabsize)
@@ -17,6 +19,7 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "U", "<C-r>", {})
 vim.keymap.set("n", "<S-Tab>", ":tabprevious<CR>", {})
 vim.keymap.set("n", "<Leader>l", ":set invlist<CR>", { desc = "Toggle invis chars" })
+vim.keymap.set("n", "<C-m>", "<C-6>", { desc = "Previous file" })
 
 -- ctrl keymaps
 vim.keymap.set("n", "<C-z>", "u", {})
@@ -55,4 +58,9 @@ autocmd('Filetype', {
     group = 'setIndent',
     pattern = { 'dart' },
     command = 'setlocal shiftwidth='..tabsize..' tabstop='..tabsize..' softtabstop='..tabsize..' cinoptions='..tabsize
+})
+autocmd('Filetype', {
+    group = 'setIndent',
+    pattern = { 'xml' },
+    command = 'setlocal shiftwidth='..tab4..' tabstop='..tab4..' softtabstop='..tab4..' cinoptions='..tab4
 })
