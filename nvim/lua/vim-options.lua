@@ -1,8 +1,8 @@
-local tabsize=2
+local tabsize=4
 local tab2=2
 local tab4=4
 
-vim.cmd("set expandtab")
+vim.cmd("set noexpandtab")
 vim.cmd("set tabstop=" .. tabsize)
 vim.cmd("set softtabstop=" .. tabsize)
 vim.cmd("set shiftwidth=" .. tabsize)
@@ -11,6 +11,7 @@ vim.cmd("set number")
 vim.cmd("set cindent")
 vim.cmd("set cinoptions="..tabsize)
 vim.cmd("set fillchars=eob:\\ ")
+vim.cmd("set lcs=tab:<->")
 vim.cmd("set nowritebackup")
 vim.cmd("tnoremap <Esc> <C-\\><C-n>")
 
