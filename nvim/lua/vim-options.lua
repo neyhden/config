@@ -11,7 +11,7 @@ vim.cmd("set number")
 vim.cmd("set cindent")
 vim.cmd("set cinoptions="..tabsize)
 vim.cmd("set fillchars=eob:\\ ")
-vim.cmd("set lcs=tab:<->")
+vim.cmd("set lcs=tab:<->,trail:·")
 vim.cmd("set nowritebackup")
 vim.cmd("tnoremap <Esc> <C-\\><C-n>")
 
