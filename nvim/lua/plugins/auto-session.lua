@@ -27,21 +27,13 @@ return {
     preserve_buffer_on_restore = nil, -- Function that returns true if a buffer should be preserved when restoring a session
 
     -- Git / Session naming
-    git_use_branch_name = function (path)
-      local git_cmd = string.format("git%s rev-parse --abbrev-ref HEAD", path and (" -C " .. path) or "")
-      local out = vim.fn.systemlist(git_cmd)
-      if vim.v.shell_error ~= 0 then
-        return nil
-      end
-      local res = string.gsub(out[1], "#", "/")
-      return res
-    end, -- Include git branch name in session name, can also be a function that takes an optional path and returns the name of the branch
+    git_use_branch_name = true, -- Include git branch name in session name, can also be a function that takes an optional path and returns the name of the branch
     git_auto_restore_on_branch_change = false, -- Should we auto-restore the session when the git branch changes. Requires git_use_branch_name
     custom_session_tag = nil, -- Function that can return a string to be used as part of the session name
 
     -- Deleting
     auto_delete_empty_sessions = true, -- Enables/disables deleting the session if there are only unnamed/empty buffers when auto-saving
-    purge_after_minutes = nil, -- Sessions older than purge_after_minutes will be deleted asynchronously on startup, e.g. set to 14400 to delete sessions that haven't been accessed for more than 10 days, defaults to off (no purging), requires >= nvim 0.10
+    purge_after_minutes = 28800, -- Sessions older than purge_after_minutes will be deleted asynchronously on startup, e.g. set to 14400 to delete sessions that haven't been accessed for more than 10 days, defaults to off (no purging), requires >= nvim 0.10
 
     -- Saving extra data
     save_extra_data = nil, -- Function that returns extra data that should be saved with the session. Will be passed to restore_extra_data on restore
