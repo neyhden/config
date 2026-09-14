@@ -1,11 +1,8 @@
 import AstalHyprland from "gi://AstalHyprland?version=0.1"
 import { createBinding, With } from "gnim"
 
-
 export const Window = () => {
 	const hyprland = AstalHyprland.get_default()
-
-	hyprland.focusedClient.title
 	const client = createBinding(hyprland, "focusedClient")
 
 	return (

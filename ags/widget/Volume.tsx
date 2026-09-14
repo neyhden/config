@@ -3,31 +3,31 @@ import { Metric } from "./Metric"
 import { createBinding } from "gnim"
 
 export const SpeakerVolume = () => {
-  const speaker = AstalWp.get_default()!.get_audio()!.get_default_speaker()!
+	const speaker = AstalWp.get_default()!.get_audio()!.get_default_speaker()!
 
-  return (
-    <Metric
-      className="speaker-metric"
-      iconName={createBinding(speaker, "volumeIcon")}
-      label={createBinding(speaker, "volume").as(v => `${(v*100).toFixed(0)}%`)}
-      onScrollUp={() => speaker.volume += 0.05}
-      onScrollDown={() => speaker.volume -= 0.05}
-      onLeftClick={() => speaker.mute = !speaker.mute}
-    />
-  )
+	return (
+		<Metric
+			className="speaker-metric"
+			iconName={createBinding(speaker, "volumeIcon")}
+			label={createBinding(speaker, "volume").as(v => `${(v*100).toFixed(0)}%`)}
+			onScrollUp={() => speaker.volume += 0.05}
+			onScrollDown={() => speaker.volume -= 0.05}
+			onLeftClick={() => speaker.mute = !speaker.mute}
+		/>
+	)
 }
 
 export const MicVolume = () => {
-  const mic = AstalWp.get_default()!.get_audio()!.get_default_microphone()!
+	const mic = AstalWp.get_default()!.get_audio()!.get_default_microphone()!
 
-  return (
-    <Metric
-      className="mic-metric"
-      iconName={createBinding(mic, "volumeIcon")}
-      label={createBinding(mic, "volume").as(v => `${(v*100).toFixed(0)}%`)}
-      onScrollUp={() => mic.volume += 0.05}
-      onScrollDown={() => mic.volume -= 0.05}
-      onLeftClick={() => mic.mute = !mic.mute}
-    />
-  )
+	return (
+		<Metric
+			className="mic-metric"
+			iconName={createBinding(mic, "volumeIcon")}
+			label={createBinding(mic, "volume").as(v => `${(v*100).toFixed(0)}%`)}
+			onScrollUp={() => mic.volume += 0.05}
+			onScrollDown={() => mic.volume -= 0.05}
+			onLeftClick={() => mic.mute = !mic.mute}
+		/>
+	)
 }

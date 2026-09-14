@@ -7,25 +7,25 @@ import { MprisWindow } from "./widget/MPRIS"
 import { Calendar } from "./widget/Clock"
 
 execAsync([ "bash", "-c", "inotifywait -q -r -e CLOSE_WRITE . && (ags quit; ags run)" ])
-  .catch(e => print(e))
+	.catch(e => print(e))
 
 app.start({
-  instanceName: "ags",
-  css: style,
-  icons: "./icons/",
-  main() {
-    const monitors = createBinding(app, "monitors")
+	instanceName: "ags",
+	css: style,
+	icons: "./icons/",
+	main() {
+		const monitors = createBinding(app, "monitors")
 
-    return (
-      <For each={monitors}>
-        {(monitor) => (
-          <This this={app}>
-            <Bar gdkmonitor={monitor} />
-            <MprisWindow gdkmonitor={monitor} />
-            <Calendar gdkmonitor={monitor} />
-          </This>
-        )}
-      </For>
-    )
-  },
+		return (
+			<For each={monitors}>
+				{(monitor) => (
+					<This this={app}>
+						<Bar gdkmonitor={monitor} />
+						<MprisWindow gdkmonitor={monitor} />
+						<Calendar gdkmonitor={monitor} />
+					</This>
+				)}
+			</For>
+		)
+	},
 })

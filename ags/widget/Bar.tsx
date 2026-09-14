@@ -6,7 +6,7 @@ import { MicVolume, SpeakerVolume } from "./Volume"
 import { BatteryLevel } from "./Battery"
 import { NetworkStatus } from "./Network"
 import { SysTray } from "./SysTray"
-import { Mpris, MprisToggle } from "./MPRIS"
+import { MprisToggle } from "./MPRIS"
 import { Brightness } from "./Brightness"
 import { Window } from "./Window"
 
