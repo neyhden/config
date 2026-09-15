@@ -1,4 +1,5 @@
 import { Gtk } from "ags/gtk4"
+import { execAsync } from "ags/process"
 import AstalHyprland from "gi://AstalHyprland?version=0.1"
 import { createBinding, createState } from "gnim"
 
@@ -32,7 +33,7 @@ export const Workspaces = () => {
 
 	const scroll = (_source: Gtk.EventControllerScroll, _dx: number, dy: number) => {
 		const sign: String = dy < 0 ? "+" : "-"
-		hyprland.dispatch("workspace", `e${sign}1`)
+		execAsync([ "hyprctl", "dispatch", `hl.dsp.focus({ workspace = \"e${sign}1\" })` ])
 	}
 
 	return (
