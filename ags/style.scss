@@ -23,6 +23,11 @@ popover {
   padding: 8px;
 }
 
+.notes {
+    background: $bg;
+    padding: 8px;
+}
+
 .calendar {
   background: $bg;
   padding: 8px;
@@ -31,6 +36,10 @@ popover {
 .workspace {
   padding: 3px;
   border-top: 2px solid transparent;
+}
+.workspace.urgent {
+  border-top: 2px solid red;
+  background-color: rgba(255, 0, 0, 0.3);
 }
 .workspace:hover {
   border-top: 2px solid white;
@@ -66,6 +75,10 @@ popover {
 }
 .brightness-metric {
   color: #ff6;
+}
+
+.notes-toggle {
+  color: #fc8;
 }
 
 scale {

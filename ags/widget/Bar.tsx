@@ -9,6 +9,7 @@ import { SysTray } from "./SysTray"
 import { MprisToggle } from "./MPRIS"
 import { Brightness } from "./Brightness"
 import { Window } from "./Window"
+import { NotesToggle } from "./Notes"
 
 
 export const Bar = ({ gdkmonitor }:{ gdkmonitor: Gdk.Monitor }) => {
@@ -39,6 +40,7 @@ export const Bar = ({ gdkmonitor }:{ gdkmonitor: Gdk.Monitor }) => {
 					</box>
 					<box $type="end" halign={Gtk.Align.END} spacing={10}>
 						<MprisToggle monIndex={monIndex} />
+						<NotesToggle monIndex={monIndex} />
 						<SpeakerVolume />
 						<MicVolume />
 						<Brightness />

@@ -5,6 +5,7 @@ import { execAsync } from "ags/process"
 import { createBinding, For, This } from "gnim"
 import { MprisWindow } from "./widget/MPRIS"
 import { Calendar } from "./widget/Clock"
+import { NotesWindow } from "./widget/Notes"
 
 execAsync([ "bash", "-c", "inotifywait -q -r -e CLOSE_WRITE . && (ags quit; ags run)" ])
 	.catch(e => print(e))
@@ -23,6 +24,7 @@ app.start({
 						<Bar gdkmonitor={monitor} />
 						<MprisWindow gdkmonitor={monitor} />
 						<Calendar gdkmonitor={monitor} />
+						<NotesWindow gdkmonitor={monitor} />
 					</This>
 				)}
 			</For>

@@ -1,7 +1,7 @@
 import { Astal, Gdk, Gtk } from "ags/gtk4"
 import app from "ags/gtk4/app"
 import AstalMpris from "gi://AstalMpris?version=0.1"
-import { Accessor, createBinding, createEffect, createState, For } from "gnim"
+import { Accessor, createBinding, createState, For, With } from "gnim"
 import { Metric } from "./Metric"
 import GLib from "gi://GLib?version=2.0"
 import Pango from "gi://Pango?version=1.0"
@@ -34,7 +34,7 @@ export const MprisWindow = ({ gdkmonitor }:{ gdkmonitor: Gdk.Monitor }) => {
 			anchor={ TOP | RIGHT }
 			application={app}
 			marginTop={32}
-			marginRight={110}
+			marginRight={180}
 			defaultWidth={400}
 		>
 			<Gtk.EventControllerMotion
@@ -56,12 +56,22 @@ export const MprisWindow = ({ gdkmonitor }:{ gdkmonitor: Gdk.Monitor }) => {
 }
 
 export const MprisToggle = ({ monIndex }:{ monIndex: number }) => {
+	const mpris = AstalMpris.get_default()
+	const players = createBinding(mpris, "players")
 	return (
-		<Metric
-			iconName={"multimedia-player-symbolic"}
-			onHoverEnter={() => updateMprisWin(1, monIndex)}
-			onHoverExit={() => updateMprisWin(-1, monIndex)}
-		/>
+		<box>
+			<With value={players}>
+				{ p =>
+					<box visible={p.length > 0}>
+						<Metric
+							iconName={"multimedia-player-symbolic"}
+							onHoverEnter={() => updateMprisWin(1, monIndex)}
+							onHoverExit={() => updateMprisWin(-1, monIndex)}
+						/>
+					</box>
+				}
+			</With>
+		</box>
 	)
 }
 
@@ -151,7 +161,7 @@ export const Mpris = () => {
 									<slider
 										focusable={false}
 										value={createBinding(player, "position")}
-										onChangeValue={(source, scrollType, value) => {
+										onChangeValue={(source, _scrollType, value) => {
 											player.set_position(source.value * player.length);
 											value = source.value * player.length
 										}}

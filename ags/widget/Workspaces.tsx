@@ -1,14 +1,11 @@
 import { Gtk } from "ags/gtk4"
-import { execAsync } from "ags/process"
 import AstalHyprland from "gi://AstalHyprland?version=0.1"
-import { createBinding, createState } from "gnim"
-
+import { createBinding, createComputed, createEffect, createState } from "gnim"
 
 export const Workspaces = () => {
 	const hyprland = AstalHyprland.get_default()
 
 	const Workspace = ({ id }: {id: number}) => {
-
 		const isVisible = createBinding(hyprland, "workspaces").as(_w => hyprland.get_workspace(id) != null)
 		const isFocused = createBinding(hyprland, "focused_workspace").as(w => w ? (w.id == id) : false )
 		const [isUrgent, setIsUrgent] = createState<boolean>(false)
@@ -19,12 +16,22 @@ export const Workspaces = () => {
 			}
 		})
 
+		createEffect(() => {
+			if (isFocused()) setIsUrgent(false);
+		})
+
+		const className = createComputed(() => {
+			let cn = "workspace";
+			if (isFocused()) cn += " focused";
+			if (isUrgent()) cn += " urgent";
+			return cn;
+		})
 
 		return (
 			<button
 				visible={isVisible}
-				class={isFocused.as(f => f ? "workspace focused" : "workspace")}
-				onClicked={() => hyprland.dispatch("workspace", id.toString())}
+				class={className}
+				onClicked={() => hyprland.dispatch(`hl.dsp.focus({ workspace = ${id} })`, '')}
 			>
 				<label label={id.toString()} />
 			</button>
@@ -33,7 +40,7 @@ export const Workspaces = () => {
 
 	const scroll = (_source: Gtk.EventControllerScroll, _dx: number, dy: number) => {
 		const sign: String = dy < 0 ? "+" : "-"
-		execAsync([ "hyprctl", "dispatch", `hl.dsp.focus({ workspace = \"e${sign}1\" })` ])
+		hyprland.dispatch(`hl.dsp.focus({ workspace = "e${sign}1" })`, '')
 	}
 
 	return (
