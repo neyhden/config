@@ -10,6 +10,9 @@ return {
 			vim.keymap.set("n", "tr", ":Telescope resume<CR>", { desc = "Telescope resume" })
 			require('telescope').setup{
 				defaults = {
+					preview = {
+						filesize_limit = 0.2,
+					},
 					mappings = {
 						n = {
 							["q"] = "close",

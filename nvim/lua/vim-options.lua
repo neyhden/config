@@ -13,6 +13,8 @@ vim.cmd("set cinoptions="..tabsize)
 vim.cmd("set fillchars=eob:\\ ")
 vim.cmd("set lcs=tab:<->,trail:·")
 vim.cmd("set nowritebackup")
+vim.cmd("set ignorecase")
+vim.cmd("set smartcase")
 vim.cmd("tnoremap <Esc> <C-\\><C-n>")
 
 vim.g.mapleader = " "
