@@ -40,7 +40,7 @@ hl.config({
 	},
 
 	input = {
-		kb_layout = "es",
+		kb_layout = "es,us",
 		kb_variant = "",
 		kb_model = "",
 		-- options at /usr/share/X11/xkb/rules/base.lst
@@ -127,6 +127,7 @@ hl.bind("SUPER + F", hl.dsp.window.fullscreen({ action = "toggle" }))
 hl.bind("SUPER + R", hl.dsp.exec_cmd(menu))
 hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd(screenshot))
 hl.bind("Print", hl.dsp.exec_cmd(screenshotall))
+hl.bind("SUPER + Tab", hl.dsp.exec_cmd("hyprctl switchxkblayout current next"))
 
 hl.bind("SUPER + SHIFT + K", hl.dsp.window.swap({ direction = "u" }))
 hl.bind("SUPER + SHIFT + H", hl.dsp.window.swap({ direction = "l" }))
