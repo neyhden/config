@@ -143,6 +143,12 @@ highlight:disabled {
   font-size: 12px;
 }
 
+.kbbox box {
+    padding: 0px 4px;
+    background: white;
+    color: black;
+}
+
 tooltip {
   background-color: $bg;
   padding: 8px;

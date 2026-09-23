@@ -118,6 +118,7 @@ export const Notes = () => {
 							<box orientation={Gtk.Orientation.VERTICAL} class={'note'}>
 								<button onClicked={() => deleteNote(index())}>del</button>
 								<Gtk.TextView
+									wrapMode={Gtk.WrapMode.WORD_CHAR}
 									hexpand={true}
 									buffer={note.buffer}
 								/>

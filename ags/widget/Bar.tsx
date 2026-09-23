@@ -10,6 +10,7 @@ import { MprisToggle } from "./MPRIS"
 import { Brightness } from "./Brightness"
 import { Window } from "./Window"
 import { NotesToggle } from "./Notes"
+import { Keyboard } from "./Keyboard"
 
 
 export const Bar = ({ gdkmonitor }:{ gdkmonitor: Gdk.Monitor }) => {
@@ -27,6 +28,7 @@ export const Bar = ({ gdkmonitor }:{ gdkmonitor: Gdk.Monitor }) => {
 		>
 			<centerbox>
 				<box $type="start" spacing={10}>
+					<Keyboard />
 					<NetworkStatus />
 					<BatteryLevel />
 					<SysTray />
