@@ -1,45 +1,35 @@
 import AstalNetwork from "gi://AstalNetwork?version=0.1"
 import { Metric } from "./Metric"
-import { createBinding, createEffect, createState } from "gnim"
-import { exec } from "ags/process"
+import { Accessor, createBinding, With } from "gnim"
+import { exec } from "ags/process";
 
 export const NetworkStatus = () => {
-	const network = AstalNetwork.get_default()
-
-	const primary = createBinding(network, "primary")
-	const wireIcon = createBinding(network.wired, "iconName")
-	const wifiIcon = createBinding(network.wifi, "iconName")
-
-	const [label, setLabel] = createState<string>("")
-	const [icon, setIcon] = createState("")
-	const [showIp, setShowIp] = createState(false)
-	createEffect(() => {
-		switch (primary()) {
-			case AstalNetwork.Primary.WIFI: {
-				setLabel(showIp() ? exec("hostname -I").split(' ').join(" - ") : network.wifi.ssid)
-				setIcon(wifiIcon())
-				break;
-			}
-			case AstalNetwork.Primary.WIRED: {
-				setLabel(showIp() ? exec("hostname -I").split(' ').join(" - ") : "")
-				setIcon(wireIcon())
-				break;
-			}
-			case AstalNetwork.Primary.UNKNOWN: {
-				setLabel("No connection")
-				setIcon("network-wireless-no-route-symbolic")
-				break;
-			}
-		}
-	})
+	const network = AstalNetwork.get_default();
+	const primary = createBinding(network, 'primary');
 
 	return (
-		<Metric
-			className="network-metric"
-			label={label}
-			iconName={icon}
-			onLeftClick={() => setShowIp(!showIp())}
-		/>
+		<With value={primary}>
+			{ primary => {
+				var label: Accessor<string> | string | undefined;
+				var icon: Accessor<string> | string | undefined;
+
+				if (primary == AstalNetwork.Primary.WIFI) {
+					label = createBinding(network.wifi, 'ssid');
+					icon = createBinding(network.wifi, 'iconName');
+				} else if (primary == AstalNetwork.Primary.WIRED) {
+					label = '';
+					icon = createBinding(network.wired, 'iconName');
+				} else {
+				}
+
+				return <Metric
+					className="network-metric"
+					label={label}
+					iconName={icon}
+					tooltip={exec('hostname -i')}
+				/>
+			}}
+		</With>
 	)
 }
 

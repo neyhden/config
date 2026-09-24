@@ -1,8 +1,10 @@
 import { Gtk } from "ags/gtk4";
-import { exec } from "ags/process";
 import AstalHyprland from "gi://AstalHyprland?version=0.1"
 import GLib from "gi://GLib?version=2.0";
 import { createState } from "gnim";
+
+const layoutNameMap = new Map();
+layoutNameMap.set('sp', 'es');
 
 export const Keyboard = () => {
 	const hyprland = AstalHyprland.get_default();
@@ -11,7 +13,9 @@ export const Keyboard = () => {
 	let timer: GLib.Source;
 
 	hyprland.connect('keyboard-layout', (_self, _kb, layout) => {
-		setCurrentLayout(layout.slice(0, 2).toLowerCase());
+		var layoutName = layout.slice(0, 2).toLowerCase();
+		layoutName = layoutNameMap.get(layoutName) ? layoutNameMap.get(layoutName) : layoutName;
+		setCurrentLayout(layoutName);
 		setRevealbox(true);
 		if (timer) clearTimeout(timer);
 		timer = setTimeout(() => {
