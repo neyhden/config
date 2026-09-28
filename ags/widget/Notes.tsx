@@ -111,12 +111,14 @@ export const Notes = () => {
 	return (
 		<box orientation={Gtk.Orientation.VERTICAL} spacing={16}>
 			<button onClicked={createNote}>+</button>
-			<scrolledwindow maxContentHeight={800} min_content_height={800}>
+			<scrolledwindow min_content_height={800}>
 				<box orientation={Gtk.Orientation.VERTICAL} spacing={8}>
 					<For each={noteList}>
 						{(note, index) => 
 							<box orientation={Gtk.Orientation.VERTICAL} class={'note'}>
-								<button onClicked={() => deleteNote(index())}>del</button>
+								<button onClicked={() => deleteNote(index())}>
+									<image iconName={'user-trash-symbolic'} />
+								</button>
 								<Gtk.TextView
 									wrapMode={Gtk.WrapMode.WORD_CHAR}
 									hexpand={true}

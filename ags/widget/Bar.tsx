@@ -20,7 +20,8 @@ export const Bar = ({ gdkmonitor }:{ gdkmonitor: Gdk.Monitor }) => {
 	return (
 		<window
 			visible
-			name="bar"
+			name='bar'
+			class='bar'
 			gdkmonitor={gdkmonitor}
 			exclusivity={Astal.Exclusivity.EXCLUSIVE}
 			anchor={TOP | LEFT | RIGHT }

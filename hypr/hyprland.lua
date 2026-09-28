@@ -40,7 +40,7 @@ hl.config({
 	},
 
 	input = {
-		kb_layout = "es,us",
+		kb_layout = "us,es",
 		kb_variant = "",
 		kb_model = "",
 		-- options at /usr/share/X11/xkb/rules/base.lst
@@ -199,6 +199,10 @@ hl.bind("CTRL + F3", hl.dsp.exec_cmd("~/.config/hypr/touchpad.sh"), { locked = t
 -- Brightness
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl s 1%+"), { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl s 1%-"), { locked = true, repeating = true })
+
+-- workspace rules
+hl.workspace_rule({ workspace = 1, monitor = "desc:Hewlett Packard HP E232 3CQ73926PP" })
+hl.workspace_rule({ workspace = 2, monitor = "desc:Hewlett Packard HP E232 3CQ7392VCX" })
 
 -- window rules
 hl.window_rule({ name = "krita hell window", match = { class = "krita", title = "krita", float = true }, no_initial_focus = true })

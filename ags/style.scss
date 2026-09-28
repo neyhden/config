@@ -1,170 +1,186 @@
 $bg: #1A1B26;
 $color: #FFFFCC;
 
-* {
-    all: unset;
-  font-size: 18px;
-  font-weight: bold;
-  font-family: FiraCodeNerdFont;
-}
-
 popover {
-  background: $bg;
-  border: 1px solid $color;
+	background: $bg;
+	border: 1px solid $color;
 }
 
-#bar {
-  background: $bg;
-  min-height: 32px;
+.bar {
+	background: $bg;
+	min-height: 32px;
+	font-size: 18px;
+	font-weight: bold;
+	font-family: FiraCodeNerdFont;
+}
+
+button {
+	background: none;
+	border-radius: 0;
+	transition-duration: 0;
 }
 
 .mpris {
-  background: $bg;
-  padding: 8px;
+	background: $bg;
+	padding: 8px;
 }
 
 .notes {
-    background: $bg;
-    padding: 8px 16px;
+	background: $bg;
+	padding: 8px 16px;
 }
 .note {
-    color: black;
-    font-family: none;
-    font-weight: none;
-    background: #dc8;
-    min-width: 10rem;
-    min-height: 10rem;
-}
-.note textview {
-    min-width: 200px;
-    min-height: 200px;
+	font-family: none;
+	font-weight: none;
+	background: #dc8;
+	padding: 8px;
+
+	& button {
+		color: $bg;
+		&:hover {
+			color: red;
+		}
+	}
+
+	& textview {
+		background: transparent;
+		color: black;
+		min-width: 200px;
+		min-height: 200px;
+	}
 }
 
 .calendar {
-  background: $bg;
-  padding: 8px;
+	background: $bg;
+	padding: 8px;
 }
 
 .workspace {
-  padding: 3px;
-  border-top: 2px solid transparent;
+	padding: 3px;
+	border-top: 2px solid transparent;
 }
 .workspace.urgent {
-  border-top: 2px solid red;
-  background-color: rgba(255, 0, 0, 0.3);
+	border-top: 2px solid red;
+	background-color: rgba(255, 0, 0, 0.3);
 }
 .workspace:hover {
-  border-top: 2px solid white;
+	border-top: 2px solid white;
 }
 .workspace.focused {
-  background-color: white;
-  color: black;
+	background: white;
+	color: black;
 }
 
 .metric {
-  border-bottom: 2px solid;
-  padding-bottom: 2px;
+	border-bottom: 2px solid;
+	padding-bottom: 2px;
 }
 .metric:hover {
-  border-bottom: 4px solid;
-  padding-bottom: 0px;
+	border-bottom: 4px solid;
+	padding-bottom: 0px;
 }
 
 .speaker-metric {
-  color: violet;
+	color: violet;
 }
 .mic-metric {
-  color: #e64;
+	color: #e64;
 }
 .battery-metric {
-  color: lightgreen;
+	color: lightgreen;
 }
 .network-metric {
-  color: #7ff;
+	color: #7ff;
 }
 .clock-metric > label {
-  min-width: 130px;
+	min-width: 130px;
 }
 .brightness-metric {
-  color: #ff6;
+	color: #ff6;
 }
 
 .notes-toggle {
-  color: #fc8;
+	color: #fc8;
 }
 
-scale {
-  min-width: 200px;
-  min-height: 15px;
-}
-trough {
-  min-width: 200px;
-  min-height: 15px;
-  border-radius: 10px;
-  background: rgba(0, 0, 0, 0.5);
-}
-highlight {
-  background: white;
-  border-radius: 0px;
-}
-highlight:disabled {
-  background: gray;
+.mpris {
+	& scale {
+		min-width: 200px;
+		min-height: 15px;
+	}
+
+	& trough {
+		min-width: 200px;
+		min-height: 15px;
+		border-radius: 10px;
+		background: rgba(0, 0, 0, 0.5);
+	}
+
+	& highlight {
+		background: white;
+		border-radius: 0px;
+	}
+
+	& slider {
+		background: none;
+		color: none;
+	}
+
+	& highlight:disabled {
+		background: gray;
+	}
+
+	& .mpris-button {
+		color: rgba(255, 255, 255, 0.5);
+		&:focus {
+			color: rgba(240, 190, 20, 0.7);
+			&:active {
+				color: rgba(250, 190, 50, 1);
+				&:hover {
+					color: rgba(255, 255, 255, 1)
+				}
+			}
+		}
+
+		&:disabled {
+			color: rgba(255, 255, 255, 0.1)
+		}
+
+		&:hover {
+			color: rgba(255, 255, 255, 0.8)
+		}
+
+		&:active {
+			color: rgba(255, 255, 255, 1)
+		}
+	}
+
+	& .mpris-title {
+		color: rgba(255, 255, 255, 1);
+		font-weight: bold;
+		font-size: 16px;
+	}
+	& .mpris-artist {
+		color: rgba(255, 255, 255, 0.6);
+		font-size: 12px;
+	}
 }
 
-.mpris-button {
-  color: rgba(255, 255, 255, 0.5)
-}
-.mpris-button:focus {
-  color: rgba(240, 190, 20, 0.7);
-}
-.mpris-button:focus:active {
-  color: rgba(250, 190, 50, 1);
-}
-.mpris-button:disabled {
-  color: rgba(255, 255, 255, 0.1)
-}
-.mpris-button:hover {
-  color: rgba(255, 255, 255, 0.8)
-}
-.mpris-button:active {
-  color: rgba(255, 255, 255, 1)
-}
-.mpris-button:focus:hover:active {
-  color: rgba(255, 255, 255, 1)
-}
-
-.mpris-title {
-  color: rgba(255, 255, 255, 1);
-  font-weight: bold;
-  font-size: 16px;
-}
-.mpris-artist {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 12px;
-}
 
 .kbbox box {
-    padding: 0px 4px;
-    background: white;
-    color: black;
+	padding: 0px 4px;
+	background: white;
+	color: black;
 }
 
 tooltip {
-  background-color: $bg;
-  padding: 8px;
+	background-color: $bg;
+	padding: 8px;
 }
 tooltip label {
-  font-size: 16px;
+	font-size: 16px;
 }
 
-calendar .other-month {
-  color: #ffffff44;
-}
-calendar grid label {
-  margin: 0;
-  padding: 0;
-}
 calendar .today {
-  border: 2px solid #f66a;
-  border-radius: 100px;
+	border: 2px solid #f66a;
 }
