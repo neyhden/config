@@ -1,6 +1,10 @@
 $bg: #1A1B26;
 $color: #FFFFCC;
 
+* {
+    all: unset;
+}
+
 popover {
 	background: $bg;
 	border: 1px solid $color;
