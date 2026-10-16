@@ -197,12 +197,12 @@ hl.bind("SUPER + SHIFT + left", hl.dsp.exec_cmd("playerctl position 5-"), { lock
 hl.bind("CTRL + F3", hl.dsp.exec_cmd("~/.config/hypr/touchpad.sh"), { locked = true })
 
 -- Brightness
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl s 1%+"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl s 1%-"), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl s 5%+"), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl s 5%-"), { locked = true, repeating = true })
 
 -- workspace rules
-hl.workspace_rule({ workspace = 1, monitor = "desc:Hewlett Packard HP E232 3CQ73926PP" })
-hl.workspace_rule({ workspace = 2, monitor = "desc:Hewlett Packard HP E232 3CQ7392VCX" })
+-- hl.workspace_rule({ workspace = 1, monitor = "desc:Hewlett Packard HP E232 3CQ73926PP" })
+-- hl.workspace_rule({ workspace = 2, monitor = "desc:Hewlett Packard HP E232 3CQ7392VCX" })
 
 -- window rules
 hl.window_rule({ name = "krita hell window", match = { class = "krita", title = "krita", float = true }, no_initial_focus = true })
